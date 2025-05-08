@@ -1,0 +1,4 @@
+dist/
+lambda.zip
+.sam/
+node_modules/

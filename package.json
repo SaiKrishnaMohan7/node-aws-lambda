@@ -1,0 +1,32 @@
+{
+  "name": "node-aws-lambda",
+  "version": "0.0.1",
+  "description": "local setup for developing a service to run onaws lambda",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist lambda.zip .sam/unzipped",
+    "build": "tsc",
+    "zip": "cp package.json dist/ && cd dist && zip ../lambda.zip main.js package.json",
+    "invoke": "mkdir -p .sam/unzipped && unzip -o lambda.zip -d .sam/unzipped && sam local invoke ZippedLambda -t template.yaml -e event.json",
+    "dev": "npm run clean && npm run build && npm run zip && npm run invoke"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/saikrishnamohan7/node-aws-lambda"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "local",
+    "development"
+  ],
+  "author": "Sai Mohan",
+  "license": "ISC",
+  "volta": {
+    "node": "18.20.8"
+  }
+}
